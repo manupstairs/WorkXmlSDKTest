@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        CreateWordWithPieChart("WordWithPieChart.docx");
+        CreateWordWithPieChart("WordWithCharts.docx");
     }
 
     public static void CreateWordWithPieChart(string filePath)
@@ -25,10 +25,14 @@ class Program
             var lineDrawing = LineChartProvider.CreateLineChart(doc);
             body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(lineDrawing)));
 
-            //var drawing = PieChartProvider.CreatePieChart(doc);
+            var barDrawing = BarChartProvider.CreateBarChart(doc);
+            body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(barDrawing)));
 
-            //body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
-            //    new DocumentFormat.OpenXml.Wordprocessing.Run(drawing)));
+            var pieDrawing = PieChartProvider.CreatePieChart(doc);
+            body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(pieDrawing)));
+
+            var radarDrawing = RadarChartProvider.CreateRadarChart(doc);
+            body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(radarDrawing)));
 
             mainPart.Document.Save();
         }
