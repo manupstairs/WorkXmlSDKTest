@@ -21,10 +21,14 @@ class Program
             mainPart.Document = new Document(new Body());
             var body = mainPart.Document.Body;
 
-            var drawing = PieChartProvider.CreatePieChart(doc);
+            // 插入曲线图
+            var lineDrawing = LineChartProvider.CreateLineChart(doc);
+            body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(lineDrawing)));
 
-            body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
-                new DocumentFormat.OpenXml.Wordprocessing.Run(drawing)));
+            //var drawing = PieChartProvider.CreatePieChart(doc);
+
+            //body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
+            //    new DocumentFormat.OpenXml.Wordprocessing.Run(drawing)));
 
             mainPart.Document.Save();
         }
